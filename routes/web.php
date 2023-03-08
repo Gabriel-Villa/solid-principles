@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SolidController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    // Solid
+
+    // S Single responsability
     Route::resource('users', UserController::class);
 
-    
+    // Open / Close
+    Route::get('o', [SolidController::class, 'openClose']);
+
+
 });
 
 require __DIR__.'/auth.php';
