@@ -7,7 +7,7 @@ class CreditCardPayMethod implements PayMethodInterface
 
     public function pay($request)
     {
-        dd("Login to pay with credit card");
+        dd("Logic to pay with credit card");
     }
 
 }

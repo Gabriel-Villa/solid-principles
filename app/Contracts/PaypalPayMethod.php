@@ -7,7 +7,7 @@ class PaypalPayMethod implements PayMethodInterface
 
     public function pay($request)
     {
-        dd("Login to pay with paypal");
+        dd("Logic to pay with paypal");
     }
 
 }
