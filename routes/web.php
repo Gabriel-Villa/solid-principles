@@ -25,19 +25,20 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // -------------- Solid --------------
 
-    // Solid
-
-    // S Single responsability
-    Route::resource('users', UserController::class);
+    // Single responsability
+    Route::get('s', [SolidController::class, 'singleResponsability']);
 
     // Open / Close
     Route::get('o', [SolidController::class, 'openClose']);
 
+    // Liskov substitution 
+    Route::get('l', [SolidController::class, 'liskovSubstitution']);
+
+    // Interface segregation 
+    Route::get('i', [SolidController::class, 'interfaceSegregation']);
 
 });
 

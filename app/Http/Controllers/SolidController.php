@@ -2,26 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Service\MetodoPagoService;
+use App\Contracts\PaypalPayMethod;
+use App\Contracts\CreditCardPayMethod;
+use App\Http\Requests\StoreUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SolidController extends Controller
 {
 
-    public $metodo;
 
-    public function __construct()
+    public function singleResponsability(StoreUserRequest $request)
     {
-        $this->metodo = 'plin';
+        User::create($request->validated());
+
+        return redirect()->route('users.create')->with('success', 'User created successfully.');
     }
 
-    public function openClose()
+    public function openClose(Request $request, CreditCardPayMethod $paymentMethod)
     {
-        
-        $paymentMethod = MetodoPagoService::getMethodPayInstance($this->metodo);
+        $paymentMethod->pay($request);
+    }
 
-        $paymentMethod->pagar();
+    public function liskovSubstitution()
+    {
+
 
     }
+
+
+    // public function interfaceSegregation(BCPController $bCPController)
+    // {
+    //     $bCPController->sendCallsByWhatsapp();
+    // }
+    
 
 }
