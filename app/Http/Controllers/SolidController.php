@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\PrecioDolar2022;
-use App\Contracts\PrecioDolar2023;
+use App\Service\MetodoPagoService;
 use Illuminate\Http\Request;
 
 class SolidController extends Controller
 {
 
-    public function openClose(PrecioDolar2023 $precioDolar)
+    public $metodo;
+
+    public function __construct()
     {
-        // PrecioDolarBcp
-        dd($precioDolar->getPrecio());
+        $this->metodo = 'plin';
+    }
+
+    public function openClose()
+    {
+        
+        $paymentMethod = MetodoPagoService::getMethodPayInstance($this->metodo);
+
+        $paymentMethod->pagar();
 
     }
 
