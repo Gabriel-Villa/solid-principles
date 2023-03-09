@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Access\WspNotification;
 use App\Contracts\PaypalPayMethod;
 use App\Contracts\CreditCardPayMethod;
 use App\Http\Requests\StoreUserRequest;
@@ -26,15 +27,17 @@ class SolidController extends Controller
 
     public function liskovSubstitution()
     {
-
+    
 
     }
 
 
-    // public function interfaceSegregation(BCPController $bCPController)
-    // {
-    //     $bCPController->sendCallsByWhatsapp();
-    // }
+    public function interfaceSegregation(WspNotification $notification)
+    {
+        $notification->setMessage("Hello");
+        $notification->setPhone("978123465");
+        $notification->sendWsp();
+    }
     
 
 }
