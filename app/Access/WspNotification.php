@@ -15,14 +15,14 @@ class WspNotification implements Notification
         $this->message = $message;
     }
 
+    public function send()
+    {
+        dd("Logic to send wsp");
+    }
+
     public function setPhone(string $phone)
     {
         $this->phone = $phone;
-    }
-
-    public function sendWsp()
-    {
-        dd("Logic to send wsp");
     }
 
 }

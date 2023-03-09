@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SolidController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +37,9 @@ Route::middleware('auth')->group(function () {
 
     // Interface segregation 
     Route::get('i', [SolidController::class, 'interfaceSegregation']);
+
+    // Dependency inversion 
+    Route::get('d', [SolidController::class, 'dependencyInversion']);
 
 });
 

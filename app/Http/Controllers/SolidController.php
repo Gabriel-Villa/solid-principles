@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Access\WspNotification;
+use App\Access\EmailNotification;
 use App\Contracts\PaypalPayMethod;
 use App\Contracts\CreditCardPayMethod;
 use App\Http\Requests\StoreUserRequest;
@@ -31,13 +32,20 @@ class SolidController extends Controller
 
     }
 
-
-    public function interfaceSegregation(WspNotification $notification)
+    public function interfaceSegregation(EmailNotification $notification)
     {
-        $notification->setMessage("Hello");
-        $notification->setPhone("978123465");
-        $notification->sendWsp();
+        
+        $notification->setMessage("Lorem Ipsum is simply dummy text of ...");
+
+        $notification->setSubject("Hi");
+
+        $notification->send();
+
     }
     
+    public function dependencyInversion()
+    {
+
+    }    
 
 }

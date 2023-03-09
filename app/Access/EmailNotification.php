@@ -15,15 +15,14 @@ class EmailNotification implements Notification
         $this->message = $message;
     }
 
+    public function send()
+    {
+        dd("Logic to the email");
+    }
+
     public function setSubject(string $subject)
     {
         $this->subject = $subject;
-    }
-
-
-    public function sendEmail()
-    {
-        dd("Logic to send email");
     }
 
 }
