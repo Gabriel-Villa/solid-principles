@@ -4,15 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Access\WspNotification;
 use App\Access\EmailNotification;
-use App\Contracts\PaypalPayMethod;
+use App\Access\Pay;
 use App\Contracts\CreditCardPayMethod;
+use App\Contracts\PaypalPayMethod;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use App\Service\PayMethodService;
 use Illuminate\Http\Request;
 
 class SolidController extends Controller
 {
 
+    public $method;
+
+    public function __construct()
+    {
+        $this->method = 'paypal';
+    }
 
     public function singleResponsability(StoreUserRequest $request)
     {
@@ -21,14 +29,19 @@ class SolidController extends Controller
         return redirect()->route('users.create')->with('success', 'User created successfully.');
     }
 
-    public function openClose(Request $request, CreditCardPayMethod $paymentMethod)
+    public function openClose(Request $request)
     {
-        $paymentMethod->pay($request);
+        $payMethod = PayMethodService::getPaymentMethodInstance($this->method);
+        $payMethod->pay($request);
     }
 
     public function liskovSubstitution()
     {
     
+        // Same types 
+        // Same arguments
+        // Dont go againt the father
+        // Dont modify schem
 
     }
 
@@ -45,6 +58,8 @@ class SolidController extends Controller
     
     public function dependencyInversion()
     {
+
+        $operation = (new Pay(new PaypalPayMethod()))->goToPay();
 
     }    
 

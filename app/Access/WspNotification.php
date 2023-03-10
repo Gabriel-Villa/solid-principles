@@ -3,8 +3,9 @@
 namespace App\Access;
 
 use App\Contracts\Notification;
+use App\Contracts\WspConfiguration;
 
-class WspNotification implements Notification
+class WspNotification implements Notification, WspConfiguration
 {
 
     public $message;

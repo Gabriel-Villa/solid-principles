@@ -3,8 +3,9 @@
 namespace App\Access;
 
 use App\Contracts\Notification;
+use App\Contracts\EmailConfiguration;
 
-class EmailNotification implements Notification
+class EmailNotification implements Notification, EmailConfiguration
 {
 
     public $message;
